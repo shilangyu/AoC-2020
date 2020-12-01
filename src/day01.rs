@@ -1,10 +1,19 @@
 use std::collections::HashSet;
 
-use crate::helpers;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
 
-pub fn silver() -> i32 {
+fn file_lines(name: &str) -> Vec<String> {
+    let reader = BufReader::new(File::open(name).unwrap());
+    reader
+        .lines()
+        .map(|l| l.expect("Could not parse line"))
+        .collect()
+}
+
+fn silver() -> i32 {
     const GOAL: i32 = 2020;
-    let nums: Vec<_> = helpers::file_lines("./inputs/day1.txt")
+    let nums: Vec<_> = file_lines("./inputs/day1.txt")
         .into_iter()
         .map(|e| e.parse::<i32>().unwrap())
         .collect();
@@ -19,9 +28,10 @@ pub fn silver() -> i32 {
 
     unreachable!()
 }
-pub fn gold() -> i32 {
+
+fn gold() -> i32 {
     const GOAL: i32 = 2020;
-    let nums: Vec<_> = helpers::file_lines("./inputs/day1.txt")
+    let nums: Vec<_> = file_lines("./inputs/day1.txt")
         .into_iter()
         .map(|e| e.parse::<i32>().unwrap())
         .collect();
@@ -38,4 +48,8 @@ pub fn gold() -> i32 {
     }
 
     unreachable!()
+}
+
+fn main() {
+    println!("day 1:\n\tpart 1: {}\n\tpart 2: {}", silver(), gold());
 }

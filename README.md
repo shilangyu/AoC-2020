@@ -1,6 +1,13 @@
 # AoC-2020
 
-Advent of Code 2020 in Rust
+Advent of Code 2020 in Rust, Julia, Golang, Typescript, Kotlin, and Swift
+
+```ts
+function writtenIn(day: number): string {
+  const choices = ["Rust", "Julia", "Golang", "Typescript", "Kotlin", "Swift"];
+  return choices[day % choices.length];
+}
+```
 
 | day | part 1 | part 2 |
 | :-: | :----: | :----: |
@@ -29,6 +36,15 @@ Advent of Code 2020 in Rust
 | 23  |   ❌   |   ❌   |
 | 24  |   ❌   |   ❌   |
 | 25  |   ❌   |   ❌   |
+
+Run all with `./run.sh`. Requires:
+
+- `cargo`, [`cargo-eval`](https://crates.io/crates/cargo-eval)
+- `go`
+- `julia`
+- `deno`
+- ???
+- `swift`
 
 <details>
 	<summary>WARNING: contains answers</summary>
