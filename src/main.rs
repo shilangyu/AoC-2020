@@ -12,6 +12,10 @@ macro_rules! print_results {
     };
 }
 
+mod helpers;
+
+mod day1;
+
 fn main() {
-    print_results![];
+    print_results![day1];
 }

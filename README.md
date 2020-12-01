@@ -4,7 +4,7 @@ Advent of Code 2020 in Rust
 
 | day | part 1 | part 2 |
 | :-: | :----: | :----: |
-|  1  |   ❌   |   ❌   |
+|  1  |   ✅   |   ✅   |
 |  2  |   ❌   |   ❌   |
 |  3  |   ❌   |   ❌   |
 |  4  |   ❌   |   ❌   |
@@ -34,5 +34,8 @@ Advent of Code 2020 in Rust
 	<summary>WARNING: contains answers</summary>
  
   ```sh
+day 1:
+	part 1: 858496
+	part 2: 263819430
   ```
 </details>
