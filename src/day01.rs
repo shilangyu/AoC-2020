@@ -11,7 +11,7 @@ fn file_lines(name: &str) -> Vec<String> {
         .collect()
 }
 
-fn silver() -> i32 {
+fn part1() -> i32 {
     const GOAL: i32 = 2020;
     let nums: Vec<_> = file_lines("./inputs/day1.txt")
         .into_iter()
@@ -29,7 +29,7 @@ fn silver() -> i32 {
     unreachable!()
 }
 
-fn gold() -> i32 {
+fn part2() -> i32 {
     const GOAL: i32 = 2020;
     let nums: Vec<_> = file_lines("./inputs/day1.txt")
         .into_iter()
@@ -51,5 +51,5 @@ fn gold() -> i32 {
 }
 
 fn main() {
-    println!("day 1:\n\tpart 1: {}\n\tpart 2: {}", silver(), gold());
+    println!("day 1:\n\tpart 1: {}\n\tpart 2: {}", part1(), part2());
 }

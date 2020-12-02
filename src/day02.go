@@ -28,7 +28,7 @@ func readData() []pass {
 	return res
 }
 
-func silver() (amount int) {
+func part1() (amount int) {
 	passes := readData()
 
 	for _, pass := range passes {
@@ -46,7 +46,7 @@ func silver() (amount int) {
 	return
 }
 
-func gold() (amount int) {
+func part2() (amount int) {
 	passes := readData()
 
 	for _, pass := range passes {
@@ -60,5 +60,5 @@ func gold() (amount int) {
 }
 
 func main() {
-	fmt.Printf("day 2:\n\tpart 1: %d\n\tpart 2: %d\n", silver(), gold())
+	fmt.Printf("day 2:\n\tpart 1: %d\n\tpart 2: %d\n", part1(), part2())
 }
