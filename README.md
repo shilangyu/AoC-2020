@@ -22,7 +22,7 @@ function writtenIn(day: number): string {
 |  1  |   ✅   |   ✅   |
 |  2  |   ✅   |   ✅   |
 |  3  |   ✅   |   ✅   |
-|  4  |   ❌   |   ❌   |
+|  4  |   ✅   |   ✅   |
 |  5  |   ❌   |   ❌   |
 |  6  |   ❌   |   ❌   |
 |  7  |   ❌   |   ❌   |
@@ -67,5 +67,8 @@ day 2:
 day 3:
 	part 1: 205
 	part 2: 3952146825
+day 4:
+	part 1: 202
+	part 2: 137
   ```
 </details>
