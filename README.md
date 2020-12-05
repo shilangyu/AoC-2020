@@ -9,9 +9,9 @@ function writtenIn(day: number): string {
     "Golang",
     "Julia",
     "Typescript",
+    "Python",
     "Kotlin",
     "Swift",
-    "Python",
   ];
   return choices[(day % choices.length) - 1];
 }
@@ -23,7 +23,7 @@ function writtenIn(day: number): string {
 |  2  |   ✅   |   ✅   |
 |  3  |   ✅   |   ✅   |
 |  4  |   ✅   |   ✅   |
-|  5  |   ❌   |   ❌   |
+|  5  |   ✅   |   ✅   |
 |  6  |   ❌   |   ❌   |
 |  7  |   ❌   |   ❌   |
 |  8  |   ❌   |   ❌   |
@@ -51,6 +51,7 @@ Run all with `./run.sh`. Requires:
 - `go`
 - `julia`
 - `deno`
+- `python`
 - ???
 - `swift`
 
@@ -70,5 +71,8 @@ day 3:
 day 4:
 	part 1: 202
 	part 2: 137
+day 5:
+	part 1: 938
+	part 2: 696
   ```
 </details>
