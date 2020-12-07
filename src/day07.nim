@@ -61,4 +61,4 @@ proc part2(): int =
   result = count_bags(data, "shiny gold")
 
 
-echo "day 6:\n\tpart 1: ", part1(), "\n\tpart 2: ", part2()
+echo "day 7:\n\tpart 1: ", part1(), "\n\tpart 2: ", part2()

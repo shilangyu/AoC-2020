@@ -81,7 +81,7 @@ day 5:
 day 6:
 	part 1: 6680
 	part 2: 3117
-day 6:
+day 7:
 	part 1: 335
 	part 2: 2431
   ```
