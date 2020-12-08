@@ -7,3 +7,4 @@ deno run --allow-read --quiet src/day04.ts
 python src/day05.py
 gcc src/day06.c -Wall -o temp.out && ./temp.out && rm temp.out
 nim r src/day07.nim 2>/dev/null
+g++ src/day08.cpp -Wall -o temp.out && ./temp.out && rm temp.out

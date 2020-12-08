@@ -1,6 +1,6 @@
 # AoC-2020
 
-Advent of Code 2020 in Rust, Julia, Golang, Typescript, Kotlin, Swift, C, Nim, and Python
+Advent of Code 2020 in Rust, Julia, Golang, Typescript, Kotlin, Swift, C, Nim, Cpp, and Python
 
 ```ts
 function writtenIn(day: number): string {
@@ -12,6 +12,7 @@ function writtenIn(day: number): string {
     "Python",
     "C",
     "Nim",
+    "Cpp",
     "Kotlin",
     "Swift",
   ];
@@ -28,7 +29,7 @@ function writtenIn(day: number): string {
 |  5  |   ✅   |   ✅   |
 |  6  |   ✅   |   ✅   |
 |  7  |   ✅   |   ✅   |
-|  8  |   ❌   |   ❌   |
+|  8  |   ✅   |   ✅   |
 |  9  |   ❌   |   ❌   |
 | 10  |   ❌   |   ❌   |
 | 11  |   ❌   |   ❌   |
@@ -84,5 +85,8 @@ day 6:
 day 7:
 	part 1: 335
 	part 2: 2431
+day 8:
+	part 1: 1217
+	part 2: 501
   ```
 </details>
