@@ -1,6 +1,6 @@
 # AoC-2020
 
-Advent of Code 2020 in Rust, Julia, Golang, Typescript, Kotlin, Swift, C, Nim, C++, Dart, and Python
+Advent of Code 2020 in Rust, Golang, Julia, Typescript, Python, C, Nim, C++, Dart, Zig, Swift, and C#
 
 ```ts
 function writtenIn(day: number): string {
@@ -14,8 +14,9 @@ function writtenIn(day: number): string {
     "Nim",
     "C++",
     "Dart",
-    "Kotlin",
+    "Zig",
     "Swift",
+    "C#",
   ];
   return choices[(day - 1) % choices.length];
 }
@@ -59,8 +60,9 @@ Run all with `./run.sh`. Requires:
 - `gcc`
 - `nim`
 - `dart`
-- ???
+- `zig`
 - `swift`
+- `dotnet`
 
 <details>
 	<summary>WARNING: contains answers</summary>
