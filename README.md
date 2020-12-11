@@ -1,6 +1,6 @@
 # AoC-2020
 
-Advent of Code 2020 in Rust, Golang, Julia, Typescript, Python, C, Nim, C++, Dart, Zig, Swift, and C#
+Advent of Code 2020 in Rust, Golang, Julia, Typescript, Python, C, Nim, C++, Dart, Zig, C#, and Swift
 
 ```ts
 function writtenIn(day: number): string {
@@ -15,40 +15,40 @@ function writtenIn(day: number): string {
     "C++",
     "Dart",
     "Zig",
-    "Swift",
     "C#",
+    "Swift",
   ];
   return choices[(day - 1) % choices.length];
 }
 ```
 
-| day | part 1 | part 2 |
-| :-: | :----: | :----: |
-|  1  |   ✅   |   ✅   |
-|  2  |   ✅   |   ✅   |
-|  3  |   ✅   |   ✅   |
-|  4  |   ✅   |   ✅   |
-|  5  |   ✅   |   ✅   |
-|  6  |   ✅   |   ✅   |
-|  7  |   ✅   |   ✅   |
-|  8  |   ✅   |   ✅   |
-|  9  |   ✅   |   ✅   |
-| 10  |   ❌   |   ❌   |
-| 11  |   ❌   |   ❌   |
-| 12  |   ❌   |   ❌   |
-| 13  |   ❌   |   ❌   |
-| 14  |   ❌   |   ❌   |
-| 15  |   ❌   |   ❌   |
-| 16  |   ❌   |   ❌   |
-| 17  |   ❌   |   ❌   |
-| 18  |   ❌   |   ❌   |
-| 19  |   ❌   |   ❌   |
-| 20  |   ❌   |   ❌   |
-| 21  |   ❌   |   ❌   |
-| 22  |   ❌   |   ❌   |
-| 23  |   ❌   |   ❌   |
-| 24  |   ❌   |   ❌   |
-| 25  |   ❌   |   ❌   |
+| day |         part 1          |         part 2          |
+| :-: | :---------------------: | :---------------------: |
+|  1  |           ✅            |           ✅            |
+|  2  |           ✅            |           ✅            |
+|  3  |           ✅            |           ✅            |
+|  4  |           ✅            |           ✅            |
+|  5  |           ✅            |           ✅            |
+|  6  |           ✅            |           ✅            |
+|  7  |           ✅            |           ✅            |
+|  8  |           ✅            |           ✅            |
+|  9  |           ✅            |           ✅            |
+| 10  | ❌ (Still studying Zig) | ❌ (Still studying Zig) |
+| 11  |           ✅            |           ✅            |
+| 12  |           ❌            |           ❌            |
+| 13  |           ❌            |           ❌            |
+| 14  |           ❌            |           ❌            |
+| 15  |           ❌            |           ❌            |
+| 16  |           ❌            |           ❌            |
+| 17  |           ❌            |           ❌            |
+| 18  |           ❌            |           ❌            |
+| 19  |           ❌            |           ❌            |
+| 20  |           ❌            |           ❌            |
+| 21  |           ❌            |           ❌            |
+| 22  |           ❌            |           ❌            |
+| 23  |           ❌            |           ❌            |
+| 24  |           ❌            |           ❌            |
+| 25  |           ❌            |           ❌            |
 
 Run all with `./run.sh`. Requires:
 
@@ -61,8 +61,8 @@ Run all with `./run.sh`. Requires:
 - `nim`
 - `dart`
 - `zig`
+- `dotnet`, [`dotnet-script`](https://github.com/filipw/dotnet-script)
 - `swift`
-- `dotnet`
 
 <details>
 	<summary>WARNING: contains answers</summary>
@@ -95,5 +95,8 @@ day 8:
 day 9:
 	part 1: 373803594
 	part 2: 51152360
+day 11:
+	part 1: 2277
+	part 2: 2066
   ```
 </details>
