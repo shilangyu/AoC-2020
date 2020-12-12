@@ -10,3 +10,4 @@ nim r src/day07.nim 2>/dev/null
 g++ src/day08.cpp -Wall -o temp.out && ./temp.out && rm temp.out
 dart run src/day09.dart
 dotnet script src/day11.cs
+swift src/day12.swift
