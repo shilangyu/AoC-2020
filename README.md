@@ -101,5 +101,8 @@ day 11:
 day 12:
 	part 1: 757
 	part 2: 51249
+day 13:
+	part 1: 2545
+	part 2: 266204454441577
   ```
 </details>
