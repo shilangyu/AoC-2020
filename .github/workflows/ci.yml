@@ -28,5 +28,29 @@ jobs:
           cargo install cargo-eval
           dotnet tool install -g dotnet-script
 
+      - name: print all versions
+        run: |
+          rustc --version
+          echo
+          go version
+          echo
+          julia --version
+          echo
+          deno --version
+          echo
+          python --version
+          echo
+          gcc --version
+          echo
+          nim --version
+          echo
+          dart --version
+          echo
+          printf 'zig: ' && zig version
+          echo
+          printf 'dotnet: ' && dotnet --version
+          echo
+          swift --version
+
       - name: run all
         run: sh run.sh
