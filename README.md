@@ -1,5 +1,7 @@
 # AoC-2020
 
+[![](https://github.com/shilangyu/AoC-2020/workflows/ci/badge.svg)](https://github.com/shilangyu/AoC-2020/actions)
+
 Advent of Code 2020 in Rust, Golang, Julia, Typescript, Python, C, Nim, C++, Dart, Zig, C#, and Swift
 
 ```ts
