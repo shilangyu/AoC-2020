@@ -36,8 +36,8 @@ function writtenIn(day: number): string {
 | 10  | ❌ (Still studying Zig) | ❌ (Still studying Zig) |
 | 11  |           ✅            |           ✅            |
 | 12  |           ✅            |           ✅            |
-| 13  |           ❌            |           ❌            |
-| 14  |           ❌            |           ❌            |
+| 13  |           ✅            |           ✅            |
+| 14  |           ✅            |           ✅            |
 | 15  |           ❌            |           ❌            |
 | 16  |           ❌            |           ❌            |
 | 17  |           ❌            |           ❌            |
@@ -104,5 +104,8 @@ day 12:
 day 13:
 	part 1: 2545
 	part 2: 266204454441577
+day 14:
+	part 1: 15403588588538
+	part 2: 3260587250457
   ```
 </details>

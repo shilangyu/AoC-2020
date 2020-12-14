@@ -12,3 +12,4 @@ dart run src/day09.dart
 dotnet script src/day11.cs
 swift src/day12.swift
 cargo +nightly eval src/day13.rs
+go run src/day14.go
