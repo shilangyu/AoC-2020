@@ -1,0 +1,27 @@
+name: ci
+
+on: [push, pull_request]
+
+jobs:
+  CI:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 5.x
+
+      - uses: denolib/setup-deno@v2
+        with:
+          deno-version: v1.x
+
+      - uses: jiro4989/setup-nim-action@v1
+
+      - uses: cedx/setup-dart@v2
+
+      - uses: goto-bus-stop/setup-zig@v1
+
+      - name: run all
+        run: sh run.sh
