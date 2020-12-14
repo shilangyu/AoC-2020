@@ -4,9 +4,8 @@ use std::fs::File;
 use std::io::{BufRead, BufReader};
 
 fn get_inputs() -> (i32, Vec<Option<i32>>) {
-    let lines: Vec<_> = BufReader::new(File::open("./inputs/day13.txt").unwrap())
+    let lines: Vec<_> = include_str!("./inputs/day13.txt")
         .lines()
-        .map(|l| l.expect("Could not parse line"))
         .collect();
 
     (
