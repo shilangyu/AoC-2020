@@ -11,7 +11,7 @@ jobs:
 
       - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.x
+          dotnet-version: "5.0.100"
 
       - uses: denolib/setup-deno@v2
         with:
@@ -22,6 +22,11 @@ jobs:
       - uses: cedx/setup-dart@v2
 
       - uses: goto-bus-stop/setup-zig@v1
+
+      - name: install tools
+        run: |
+          cargo install cargo-eval
+          dotnet tool install -g dotnet-script
 
       - name: run all
         run: sh run.sh
