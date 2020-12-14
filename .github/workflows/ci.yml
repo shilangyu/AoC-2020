@@ -53,4 +53,6 @@ jobs:
           swift --version
 
       - name: run all
-        run: sh run.sh
+        run: |
+          sed -i 's/python/python3/g' run.sh
+          sh run.sh
