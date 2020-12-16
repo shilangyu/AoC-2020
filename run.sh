@@ -13,4 +13,5 @@ dotnet script src/day11.cs &&
 swift src/day12.swift &&
 cargo +nightly eval src/day13.rs &&
 go run src/day14.go &&
-julia src/day15.jl
+julia src/day15.jl &&
+deno run --allow-read --quiet src/day16.ts
