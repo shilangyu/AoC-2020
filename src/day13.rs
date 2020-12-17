@@ -1,5 +1,3 @@
-#![feature(never_type)]
-
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -65,7 +63,7 @@ fn main() {
     );
 }
 
-fn assert_coprimes(nums: &Vec<Option<i32>>) -> Result<(), !> {
+fn assert_coprimes(nums: &Vec<Option<i32>>) {
     // taken from `num` crate
     fn gcd(mut n1: i32, mut n2: i32) -> i32 {
         while n2 != 0 {
@@ -90,6 +88,4 @@ fn assert_coprimes(nums: &Vec<Option<i32>>) -> Result<(), !> {
             }
         }
     }
-
-    Ok(())
 }

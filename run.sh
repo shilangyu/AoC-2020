@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cargo eval src/day01.rs &&
+rustc src/day01.rs -o temp.out && ./temp.out && rm temp.out &&
 go run src/day02.go &&
 julia src/day03.jl &&
 deno run --allow-read --quiet src/day04.ts &&
@@ -11,7 +11,7 @@ g++ src/day08.cpp -Wall -o temp.out && ./temp.out && rm temp.out &&
 dart run src/day09.dart &&
 dotnet script src/day11.cs &&
 swift src/day12.swift &&
-cargo +nightly eval src/day13.rs &&
+rustc src/day13.rs -o temp.out && ./temp.out && rm temp.out &&
 go run src/day14.go &&
 julia src/day15.jl &&
 deno run --allow-read --quiet src/day16.ts &&

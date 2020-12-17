@@ -54,7 +54,7 @@ function writtenIn(day: number): string {
 
 Run all with `./run.sh`. Requires:
 
-- `cargo`, [`cargo-eval`](https://crates.io/crates/cargo-eval)
+- `cargo`
 - `go`
 - `julia`
 - `deno`
