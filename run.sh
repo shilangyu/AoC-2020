@@ -15,4 +15,5 @@ rustc src/day13.rs -o temp.out && ./temp.out && rm temp.out &&
 go run src/day14.go &&
 julia src/day15.jl &&
 deno run --allow-read --quiet src/day16.ts &&
-python src/day17.py
+python src/day17.py &&
+gcc src/day18.c -Wall -o temp.out && ./temp.out && rm temp.out
