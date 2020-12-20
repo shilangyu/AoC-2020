@@ -18,4 +18,5 @@ julia src/day15.jl &&
 deno run --allow-read --quiet src/day16.ts &&
 python src/day17.py &&
 gcc src/day18.c -Wall -o temp.out && ./temp.out && rm temp.out &&
-nim r src/day19.nim 2>/dev/null
+nim r src/day19.nim 2>/dev/null &&
+g++ src/day20.cpp -Wall -o temp.out && ./temp.out && rm temp.out
