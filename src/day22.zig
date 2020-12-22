@@ -47,7 +47,7 @@ fn copyPlayers(players: *Players, p1Length: usize, p2Length: usize) !Players {
     var p1 = std.ArrayList(usize).init(allocator);
     try p1.ensureCapacity(p1Length);
     var p2 = std.ArrayList(usize).init(allocator);
-    try p1.ensureCapacity(p2Length);
+    try p2.ensureCapacity(p2Length);
 
     var i: usize = 0;
     while (i < p1Length) : (i += 1) {
