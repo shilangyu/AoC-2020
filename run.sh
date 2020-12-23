@@ -21,4 +21,5 @@ gcc src/day18.c -Wall -o temp.out && ./temp.out && rm temp.out &&
 nim r src/day19.nim 2>/dev/null &&
 g++ src/day20.cpp -Wall -o temp.out && ./temp.out && rm temp.out &&
 dart run src/day21.dart &&
-zig run src/day22.zig
+zig run src/day22.zig &&
+dotnet script src/day23.cs
