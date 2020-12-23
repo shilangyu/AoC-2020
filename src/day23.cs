@@ -7,7 +7,7 @@ using System.Linq;
 
 (Cups, int firstCup, int lastCup) getInput()
 {
-	using (var file = new StreamReader("./input.txt"))
+	using (var file = new StreamReader("./inputs/day23.txt"))
 	{
 		var line = file.ReadLine();
 		return (new(line), line[0] - '0', line[^1] - '0');
