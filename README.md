@@ -49,7 +49,7 @@ function writtenIn(day: number): string {
 | 21  |   ✅   |   ✅   |
 | 22  |   ✅   |   ✅   |
 | 23  |   ✅   |   ✅   |
-| 24  |   ❌   |   ❌   |
+| 24  |   ✅   |   ✅   |
 | 25  |   ❌   |   ❌   |
 
 Run all with `./run.sh`. Requires:
