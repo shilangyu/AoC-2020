@@ -13,7 +13,8 @@ fn file_lines(name: &str) -> Vec<String> {
 
 fn part1() -> i32 {
     const GOAL: i32 = 2020;
-    let nums: Vec<_> = file_lines("./inputs/day1.txt")
+    let nums: Vec<_> = include_str!("./inputs/day1.txt")
+        .split('\n')
         .into_iter()
         .map(|e| e.parse::<i32>().unwrap())
         .collect();
