@@ -23,4 +23,5 @@ g++ src/day20.cpp -Wall -o temp.out && ./temp.out && rm temp.out &&
 dart run src/day21.dart &&
 zig run src/day22.zig &&
 dotnet script src/day23.cs &&
-swift src/day24.swift
+swift src/day24.swift &&
+deno run src/day25.js

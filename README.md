@@ -6,6 +6,8 @@ Advent of Code 2020 in Rust, Golang, Julia, Typescript, Python, C, Nim, C++, Dar
 
 ```ts
 function writtenIn(day: number): string {
+  if (day === 25) return "Javascript";
+
   const choices = [
     "Rust",
     "Golang",
@@ -50,7 +52,7 @@ function writtenIn(day: number): string {
 | 22  |   ✅   |   ✅   |
 | 23  |   ✅   |   ✅   |
 | 24  |   ✅   |   ✅   |
-| 25  |   ❌   |   ❌   |
+| 25  |   ✅   |   ❌   |
 
 Run all with `./run.sh`. Requires:
 
