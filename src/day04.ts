@@ -1,6 +1,6 @@
 const passportFields = ["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid", "cid"];
 
-async function readInput(): Promise<string[]> {
+async function getInput(): Promise<string[]> {
   const data = await Deno.readFile("./inputs/day4.txt");
   return new TextDecoder("utf-8").decode(data).split("\n\n");
 }
@@ -32,7 +32,7 @@ function validKeys(passport: ParsedPassport): boolean {
 }
 
 async function part1() {
-  const data = await readInput();
+  const data = await getInput();
   let valid = 0;
 
   for (const passport of data) {
@@ -46,7 +46,7 @@ async function part1() {
 }
 
 async function part2() {
-  const data = await readInput();
+  const data = await getInput();
   let valid = 0;
 
   for (const passport of data) {

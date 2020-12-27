@@ -6,7 +6,7 @@ struct Instruction {
 	var value: Int
 }
 
-func getInputs() -> [Instruction] {
+func getInput() -> [Instruction] {
 	var res = [Instruction]()
 	let contents = try! String(contentsOfFile: "./inputs/day12.txt", encoding: .utf8)
 
@@ -33,7 +33,7 @@ func part1() -> Int {
 	var dir = (1, 0)
 	var pos = (0, 0)
 
-	for instr in getInputs() {
+	for instr in getInput() {
 		switch instr.cmd {
 			case "F":
 				pos.0 += dir.0 * instr.value
@@ -62,7 +62,7 @@ func part2() -> Int {
 	var pos = (0, 0)
 	var waypoint = (10, 1)
 
-	for instr in getInputs() {
+	for instr in getInput() {
 		switch instr.cmd {
 			case "F":
 				pos.0 += waypoint.0 * instr.value

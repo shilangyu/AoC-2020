@@ -55,7 +55,7 @@ enum Direction: CaseIterable {
 	}
 }
 
-func getInputs() -> [[Direction]] {
+func getInput() -> [[Direction]] {
 	var res = [[Direction]]()
 	let contents = try! String(contentsOfFile: "./inputs/day24.txt", encoding: .utf8)
 
@@ -97,13 +97,13 @@ func turnTiles(_ directionList: [[Direction]]) -> Set<Point> {
 }
 
 func part1() -> Int {
-	let directionList = getInputs()
+	let directionList = getInput()
 
 	return turnTiles(directionList).count
 }
 
 func part2() -> Int {
-	let directionList = getInputs()
+	let directionList = getInput()
 
 	var black = turnTiles(directionList)
 

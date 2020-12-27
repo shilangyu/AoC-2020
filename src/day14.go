@@ -37,7 +37,7 @@ type block struct {
 	overwrites []overwrite
 }
 
-func getInputs() []block {
+func getInput() []block {
 	file, _ := os.Open("./inputs/day14.txt")
 	defer file.Close()
 
@@ -77,7 +77,7 @@ func getInputs() []block {
 func part1() uint64 {
 	memory := map[uint64]uint64{}
 
-	data := getInputs()
+	data := getInput()
 
 	for _, b := range data {
 		for _, over := range b.overwrites {
@@ -101,7 +101,7 @@ func part1() uint64 {
 func part2() uint64 {
 	memory := map[uint64]uint64{}
 
-	data := getInputs()
+	data := getInput()
 
 	for _, b := range data {
 		for _, over := range b.overwrites {

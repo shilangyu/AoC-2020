@@ -1,8 +1,10 @@
-slope = open("./inputs/day3.txt") do f
+get_input() = open("./inputs/day3.txt") do f
 	readlines(f) |> l -> split.(l, "")
 end
 
 function count_trees(Δx, Δy)
+	slope = get_input()
+	
 	x = 1
 	y = 1
 	

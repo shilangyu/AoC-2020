@@ -1,4 +1,4 @@
-fn get_inputs() -> (i32, Vec<Option<i32>>) {
+fn get_input() -> (i32, Vec<Option<i32>>) {
     let mut lines = include_str!("../inputs/day13.txt").lines();
 
     (
@@ -8,7 +8,7 @@ fn get_inputs() -> (i32, Vec<Option<i32>>) {
 }
 
 fn part1() -> i32 {
-    let (goal, buses) = get_inputs();
+    let (goal, buses) = get_input();
 
     let mut best = i32::MAX;
     let mut res = 0;
@@ -25,7 +25,7 @@ fn part1() -> i32 {
 }
 
 fn part2() -> usize {
-    let (_, buses) = get_inputs();
+    let (_, buses) = get_input();
     // !!assumes inputs are coprimes which they happen to be!!
     assert_coprimes(&buses);
 

@@ -1,10 +1,10 @@
-get_inputs() = open("./inputs/day15.txt") do f
+get_input() = open("./inputs/day15.txt") do f
 	readlines(f)[1] |> l -> split(l, ",") .|> string .|> String |> l -> parse.(Int, l)
 end
 
 
 function run_game(upto)
-	nums = get_inputs()
+	nums = get_input()
 	
 	prev = pop!(nums)
 	

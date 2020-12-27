@@ -12,7 +12,7 @@ type pass struct {
 	password  string
 }
 
-func readData() []pass {
+func getInput() []pass {
 	res := []pass{}
 
 	file, _ := os.Open("./inputs/day2.txt")
@@ -29,7 +29,7 @@ func readData() []pass {
 }
 
 func part1() (amount int) {
-	passes := readData()
+	passes := getInput()
 
 	for _, pass := range passes {
 		curr := 0
@@ -47,7 +47,7 @@ func part1() (amount int) {
 }
 
 func part2() (amount int) {
-	passes := readData()
+	passes := getInput()
 
 	for _, pass := range passes {
 		// poor-mans logical xor

@@ -13,7 +13,7 @@ struct Instruction {
   int val;
 };
 
-vector<Instruction> read_input() {
+vector<Instruction> get_input() {
   ifstream f("./inputs/day8.txt");
   string line;
   vector<Instruction> res;
@@ -37,7 +37,7 @@ vector<Instruction> read_input() {
 }
 
 int part1() {
-  auto data = read_input();
+  auto data = get_input();
 
   int acc = 0;
   size_t pointer = 0;
@@ -70,7 +70,7 @@ int part1() {
 }
 
 int part2() {
-  auto data = read_input();
+  auto data = get_input();
 
   // brute force yay!
   for (size_t i = 0; i < data.size(); i++) {
