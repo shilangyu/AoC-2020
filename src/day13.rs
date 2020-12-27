@@ -1,15 +1,9 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
-
 fn get_inputs() -> (i32, Vec<Option<i32>>) {
-    let lines: Vec<_> = BufReader::new(File::open("./inputs/day13.txt").unwrap())
-        .lines()
-        .map(|l| l.expect("Could not parse line"))
-        .collect();
+    let mut lines = include_str!("../inputs/day13.txt").lines();
 
     (
-        lines[0].parse::<i32>().unwrap(),
-        lines[1].split(',').map(|e| e.parse::<i32>().ok()).collect(),
+        lines.next().unwrap().parse().unwrap(),
+        lines.next().unwrap().split(',').map(|e| e.parse().ok()).collect(),
     )
 }
 

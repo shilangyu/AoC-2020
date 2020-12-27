@@ -1,22 +1,15 @@
 use std::collections::HashSet;
 
-use std::fs::File;
-use std::io::{BufRead, BufReader};
-
-fn file_lines(name: &str) -> Vec<String> {
-    let reader = BufReader::new(File::open(name).unwrap());
-    reader
+fn get_input() -> Vec<i32> {
+    include_str!("../inputs/day1.txt")
         .lines()
-        .map(|l| l.expect("Could not parse line"))
+        .map(|e| e.parse::<i32>().unwrap())
         .collect()
 }
 
 fn part1() -> i32 {
     const GOAL: i32 = 2020;
-    let nums: Vec<_> = file_lines("./inputs/day1.txt")
-        .into_iter()
-        .map(|e| e.parse::<i32>().unwrap())
-        .collect();
+    let nums = get_input();
 
     let set: HashSet<_> = nums.iter().collect();
 
@@ -31,10 +24,7 @@ fn part1() -> i32 {
 
 fn part2() -> i32 {
     const GOAL: i32 = 2020;
-    let nums: Vec<_> = file_lines("./inputs/day1.txt")
-        .into_iter()
-        .map(|e| e.parse::<i32>().unwrap())
-        .collect();
+    let nums = get_input();
 
     let set: HashSet<_> = nums.iter().collect();
 
@@ -51,5 +41,7 @@ fn part2() -> i32 {
 }
 
 fn main() {
-    println!("day 1:\n\tpart 1: {}\n\tpart 2: {}", part1(), part2());
+    println!("day 1:
+	part 1: {}
+	part 2: {}", part1(), part2());
 }
