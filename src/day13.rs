@@ -13,13 +13,11 @@ fn part1() -> i32 {
     let mut best = i32::MAX;
     let mut res = 0;
 
-    for timestamp in buses {
-        if let Some(num) = timestamp {
-            let curr = goal - (goal % num) + num;
-            if curr < best {
-                best = curr;
-                res = num * (best - goal);
-            }
+    for num in buses.into_iter().filter_map(|e| e) {
+        let curr = goal - (goal % num) + num;
+        if curr < best {
+            best = curr;
+            res = num * (best - goal);
         }
     }
 
@@ -68,17 +66,13 @@ fn assert_coprimes(nums: &Vec<Option<i32>>) {
         n1.abs()
     }
 
-    for m1 in nums {
-        if let Some(n1) = m1 {
-            for m2 in nums {
-                if let Some(n2) = m2 {
-                    if n1 == n2 {
-                        continue;
-                    }
-                    if gcd(*n1, *n2) != 1 {
-                        unreachable!()
-                    }
-                }
+    for n1 in nums.iter().filter_map(|&e| e) {
+        for n2 in nums.iter().filter_map(|&e| e) {
+            if n1 == n2 {
+                continue;
+            }
+            if gcd(n1, n2) != 1 {
+                unreachable!()
             }
         }
     }

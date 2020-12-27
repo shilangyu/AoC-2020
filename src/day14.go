@@ -45,7 +45,7 @@ func getInputs() []block {
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		if scanner.Text()[0:2] == "ma" {
+		if scanner.Text()[:2] == "ma" {
 			b := block{}
 
 			curr := 0
@@ -106,8 +106,6 @@ func part2() uint64 {
 	for _, b := range data {
 		for _, over := range b.overwrites {
 			floating := [maskSize]bitState{}
-			combinations := 1
-			// invariant with combinations (log_2)
 			amount := 0
 
 			for i, bit := range b.mask {
@@ -118,12 +116,11 @@ func part2() uint64 {
 					floating[i] = bit
 				case bitStateNothing:
 					floating[i] = bit
-					combinations *= 2
 					amount++
 				}
 			}
 
-			for i := 0; i < combinations; i++ {
+			for i := 0; i < (1 << amount); i++ {
 				addr := uint64(0)
 				curr := 0
 				for pos, state := range floating {
@@ -152,5 +149,8 @@ func part2() uint64 {
 }
 
 func main() {
-	fmt.Printf("day 14:\n\tpart 1: %d\n\tpart 2: %d\n", part1(), part2())
+	fmt.Printf(`day 14:
+	part 1: %d
+	part 2: %d
+`, part1(), part2())
 }

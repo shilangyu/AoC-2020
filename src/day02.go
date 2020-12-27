@@ -60,5 +60,8 @@ func part2() (amount int) {
 }
 
 func main() {
-	fmt.Printf("day 2:\n\tpart 1: %d\n\tpart 2: %d\n", part1(), part2())
+	fmt.Printf(`day 2:
+	part 1: %d
+	part 2: %d
+`, part1(), part2())
 }

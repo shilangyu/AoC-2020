@@ -22,7 +22,7 @@ proc get_input(): seq[Bag] =
       let parts = bag.split(' ')
       if parts[0] == "no":
         break
-      inner.add(InsideBag(name : parts[1] & " " & parts[2], amount : parts[0].parseInt()))
+      inner.add(InsideBag(name: parts[1] & " " & parts[2], amount: parts[0].parseInt()))
     
     result.add(Bag(name: name, holds: inner))
 
@@ -46,8 +46,6 @@ proc count_bags(data: seq[Bag], inside: string): int =
     if d.name == inside:
       for inner in d.holds:
         result += inner.amount * (count_bags(data, inner.name) + 1)
-
-
 
 
 proc part1(): int =

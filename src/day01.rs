@@ -3,12 +3,13 @@ use std::collections::HashSet;
 fn get_input() -> Vec<i32> {
     include_str!("../inputs/day1.txt")
         .lines()
-        .map(|e| e.parse::<i32>().unwrap())
+        .map(|e| e.parse().unwrap())
         .collect()
 }
 
+const GOAL: i32 = 2020;
+
 fn part1() -> i32 {
-    const GOAL: i32 = 2020;
     let nums = get_input();
 
     let set: HashSet<_> = nums.iter().collect();
@@ -23,7 +24,6 @@ fn part1() -> i32 {
 }
 
 fn part2() -> i32 {
-    const GOAL: i32 = 2020;
     let nums = get_input();
 
     let set: HashSet<_> = nums.iter().collect();

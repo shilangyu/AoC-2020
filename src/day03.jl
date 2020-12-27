@@ -28,4 +28,6 @@ part1() = count_trees(3, 1)
 	
 part2() = ([(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)] .|> args -> count_trees(args...)) |> prod
 
-println("day 3:\n\tpart 1: ", part1(), "\n\tpart 2: ", part2())
+println("day 3:
+	part 1: ", part1(), "
+	part 2: ", part2())

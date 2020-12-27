@@ -43,6 +43,7 @@ fn get_input() !Players {
 
     return Players{ .p1 = p1, .p2 = p2 };
 }
+
 fn copyPlayers(players: *Players, p1Length: usize, p2Length: usize) !Players {
     var p1 = std.ArrayList(usize).init(allocator);
     try p1.ensureCapacity(p1Length);

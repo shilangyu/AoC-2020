@@ -10,7 +10,7 @@ func getInputs() -> [Instruction] {
 	var res = [Instruction]()
 	let contents = try! String(contentsOfFile: "./inputs/day12.txt", encoding: .utf8)
 
-	for cmd in contents.split(separator:"\n") {
+	for cmd in contents.split(separator: "\n") {
 		res.append(Instruction(
 			cmd: cmd[cmd.startIndex], 
 			value: Int(cmd[cmd.index(after: cmd.startIndex)...])!

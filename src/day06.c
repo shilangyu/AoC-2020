@@ -20,7 +20,7 @@ char** get_input(size_t* length) {
   fclose(fp);
 
   result[i++] = "\n";
-  *(length) = i;
+  *length = i;
 
   return result;
 }
