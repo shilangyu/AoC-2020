@@ -44,7 +44,7 @@ const not_found = -1
 func matches(rules: Table[int, Rule], rule: int, str: string, index: int): int =
   let curr = rules[rule]
   if curr.character.isSome():
-    if curr.character.get() == str[index]:
+    if index < str.len() and curr.character.get() == str[index]:
       return index + 1
     else:
       return not_found
@@ -77,10 +77,36 @@ proc part2(): int =
 
   rules[8] = Rule(character: none(char), subrules: @[@[42], @[42, 8]])
   rules[11] = Rule(character: none(char), subrules: @[@[42, 31], @[42, 11, 31]])
-  
-  # for l in data:
-  #   if matches(rules, 0, l, 0) == l.len():
-  #     result += 1
 
+  # rule 0 is 8 11. So in fact all we want is:
+  # "match 42 n times then match 31 m times such that n-1 >= m and n >= 2 and m >= 1"
+  
+  for l in data:
+    echo "done ", l
+    # how many 42s
+    var n = 0
+    var index = 0
+    # check first required 42
+    index = matches(rules, 42, l, index)
+    if index == not_found:
+      continue
+
+    block search:
+      while true:
+        index = matches(rules, 42, l, index)
+        if index == not_found:
+          break
+        n += 1
+
+        var index = index
+        # we now have a fixed n, see if that n is correct by matching the rest with 31s
+        # we can match at most n 31s
+        for m in countup(1, n):
+          index = matches(rules, 31, l, index)
+          if index == l.len():
+            result += 1
+            break search
+          elif index == not_found:
+            break
 
 echo "day 19:\n\tpart 1: ", part1(), "\n\tpart 2: ", part2()
