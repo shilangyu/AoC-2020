@@ -1,9 +1,7 @@
 import 'dart:collection';
 import 'dart:io';
 
-class Food {
-  List<String> ingredients, allergens;
-}
+typedef Food = ({List<String> ingredients, List<String> allergens});
 
 Future<List<Food>> getInput() async {
   final file = File("./inputs/day21.txt");
@@ -13,9 +11,7 @@ Future<List<Food>> getInput() async {
     var sp = line.split(' (contains ');
     sp[1] = sp[1].split(')')[0];
 
-    res.add(Food()
-      ..ingredients = sp[0].split(' ')
-      ..allergens = sp[1].split(', '));
+    res.add((ingredients: sp[0].split(' '), allergens: sp[1].split(', ')));
   }
 
   return res;
@@ -27,7 +23,7 @@ HashMap<String, Set<String>> getAssigned(List<Food> foods) {
   for (final food in foods) {
     for (final aller in food.allergens) {
       if (assigned.containsKey(aller)) {
-        assigned[aller] = assigned[aller].intersection({...food.ingredients});
+        assigned[aller] = assigned[aller]!.intersection({...food.ingredients});
       } else {
         assigned[aller] = {...food.ingredients};
       }
@@ -72,7 +68,7 @@ Future<String> part2() async {
         answer[correct] = ass.key;
 
         for (final ass in assigned.entries) {
-          assigned[ass.key].remove(correct);
+          assigned[ass.key]!.remove(correct);
         }
 
         break;
@@ -81,7 +77,7 @@ Future<String> part2() async {
   }
 
   final res = answer.keys.toList()
-    ..sort((a, b) => answer[a].compareTo(answer[b]));
+    ..sort((a, b) => answer[a]!.compareTo(answer[b]!));
 
   return res.join(',');
 }
