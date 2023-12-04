@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <memory>
+#include <optional>
 #include <string>
 #include <unordered_set>
 #include <vector>
@@ -53,73 +54,144 @@ vector<Tile> get_input() {
   return res;
 }
 
-string part1() {
-  auto data = get_input();
+Tile rotate(const Tile& tile) {
+  auto& pixels = tile.pixels;
+  Tile res = tile;
 
-  struct TileBorders {
-    uint64_t id;
-    // borders encoded as a 10-bit number
-    array<uint16_t, 4> borders;
-  };
-
-  vector<TileBorders> tiles;
-
-  for (auto& tile : data) {
-    tiles.push_back({});
-    tiles.back().id = tile.id;
-
-    uint16_t b1 = 0;
-    for (size_t i = 0; i < tile.pixels.size(); i++) {
-      b1 |= tile.pixels[0][i] << i;
+  for (size_t i = 0; i < pixels.size(); i++) {
+    for (size_t j = 0; j < pixels[i].size(); j++) {
+      res.pixels[j][pixels.size() - i - 1] = pixels[i][j];
     }
-    uint16_t b2 = 0;
-    for (size_t i = 0; i < tile.pixels.size(); i++) {
-      b2 |= tile.pixels.back()[tile.pixels.back().size() - 1 - i] << i;
-    }
-    uint16_t b3 = 0;
-    for (size_t i = 0; i < tile.pixels.size(); i++) {
-      b3 |= tile.pixels[tile.pixels.back().size() - 1 - i][0] << i;
-    }
-    uint16_t b4 = 0;
-    for (size_t i = 0; i < tile.pixels.size(); i++) {
-      b4 |= tile.pixels[i].back() << i;
-    }
-
-    tiles.back().borders = {b1, b2, b3, b4};
   }
 
-  // c++ does not support 128bit numbers
-  string python_cmd = "python3 -c 'print(1";
+  return res;
+}
 
-  // THANK GOD each tile has only one matching neighbor, gonna exploit it and
-  // just assume those with 2 matching borders are corners
+Tile flip_y(const Tile& tile) {
+  auto& pixels = tile.pixels;
+  Tile res = tile;
+
+  for (size_t i = 0; i < pixels.size(); i++) {
+    for (size_t j = 0; j < pixels[i].size(); j++) {
+      res.pixels[i][pixels.size() - j - 1] = pixels[i][j];
+    }
+  }
+
+  return res;
+}
+
+/// Augment a list of tiles with all of the rotations and flips
+vector<Tile> augment_actions(vector<Tile> tiles) {
+  vector<Tile> augmented;
+
+  for (auto tile : tiles) {
+    augmented.push_back(tile);
+    augmented.push_back(rotate(tile));
+    augmented.push_back(rotate(rotate(tile)));
+    augmented.push_back(rotate(rotate(rotate(tile))));
+    augmented.push_back(flip_y(tile));
+    augmented.push_back(rotate(flip_y(tile)));
+    augmented.push_back(rotate(rotate(flip_y(tile))));
+    augmented.push_back(rotate(rotate(rotate(flip_y(tile)))));
+  }
+
+  return augmented;
+}
+
+optional<vector<vector<Tile>>> tile_image(vector<Tile>& tiles,
+                                          vector<vector<Tile>>& tiling,
+                                          size_t d,
+                                          unordered_set<uint64_t>& used_tiles) {
+  auto n = tiling.size();
+  auto m = tiling[n - 1].size();
+
+  if (n == d && m == d) {
+    // full tiling
+    return tiling;
+  }
+
   for (auto& tile : tiles) {
-    int found = 0;
-    for (auto& border : tile.borders) {
-      // reversed is needed to check for rotations
-      uint16_t reversed = 0;
-      for (size_t i = 0; i < data[0].pixels.size(); i++) {
-        reversed |= ((border >> (data[0].pixels.size() - 1 - i)) & 1) << i;
-      }
+    if (used_tiles.find(tile.id) != used_tiles.end()) {
+      // already used in the tiling, skip
+      continue;
+    }
 
-      for (auto& other_tile : tiles) {
-        if (other_tile.id == tile.id)
+    if (n != 1) {
+      // if not first row, the tile has to match with the one above
+      if (m != d) {
+        if (tiling[n - 2][m].pixels.back() != tile.pixels.front()) {
           continue;
-
-        for (auto& other_border : other_tile.borders) {
-          // rotation || flip
-          if (reversed == other_border || border == other_border) {
-            found++;
-          }
+        }
+      } else {
+        if (tiling[n - 1][0].pixels.back() != tile.pixels.front()) {
+          continue;
         }
       }
     }
-    if (found == 2) {
-      python_cmd.append("*");
-      python_cmd.append(to_string(tile.id));
+
+    if (m != d && m != 0) {
+      // if not first column, the tile has to match with the one on the left
+      for (size_t i = 0; i < tile.pixels.size(); i++) {
+        if (tiling[n - 1][m - 1].pixels[i].back() != tile.pixels[i][0]) {
+          goto skip_tile;
+        }
+      }
     }
+
+    {
+      used_tiles.insert(tile.id);
+      if (m == d) {
+        tiling.emplace_back();
+      }
+      tiling.back().push_back(tile);
+
+      if (auto out = tile_image(tiles, tiling, d, used_tiles);
+          out.has_value()) {
+        return out;
+      }
+
+      tiling.back().pop_back();
+      if (m == d) {
+        tiling.pop_back();
+      }
+
+      used_tiles.erase(tile.id);
+    }
+
+  skip_tile:;
   }
+
+  return std::nullopt;
+}
+
+vector<vector<Tile>> tile_image(vector<Tile>& tiles) {
+  unordered_set<uint64_t> used_tiles;
+  vector<vector<Tile>> temp;
+  temp.emplace_back();
+
+  size_t d = lround(sqrt((tiles.size() / 8)));
+
+  auto tiling = tile_image(tiles, temp, d, used_tiles);
+
+  return tiling.value();
+}
+
+string part1() {
+  auto data = augment_actions(get_input());
+  auto tiling = tile_image(data);
+
+  // c++ does not support 128bit numbers
+  string python_cmd = "python3 -c 'print(";
+
+  python_cmd.append(to_string(tiling.front().front().id));
+  python_cmd.append("*");
+  python_cmd.append(to_string(tiling.back().back().id));
+  python_cmd.append("*");
+  python_cmd.append(to_string(tiling.front().back().id));
+  python_cmd.append("*");
+  python_cmd.append(to_string(tiling.back().front().id));
   python_cmd.append(", end=\"\")'");
+
   string res = exec(python_cmd.c_str());
 
   return res;
