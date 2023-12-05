@@ -82,7 +82,6 @@ proc part2(): int =
   # "match 42 n times then match 31 m times such that n-1 >= m and n >= 2 and m >= 1"
   
   for l in data:
-    echo "done ", l
     # how many 42s
     var n = 0
     var index = 0
