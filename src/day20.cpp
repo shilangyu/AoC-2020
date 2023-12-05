@@ -54,13 +54,30 @@ vector<Tile> get_input() {
   return res;
 }
 
-Tile rotate(const Tile& tile) {
-  auto& pixels = tile.pixels;
-  Tile res = tile;
+vector<vector<bool>> rotate(const vector<vector<bool>>& pixels) {
+  auto res = pixels;
 
   for (size_t i = 0; i < pixels.size(); i++) {
     for (size_t j = 0; j < pixels[i].size(); j++) {
-      res.pixels[j][pixels.size() - i - 1] = pixels[i][j];
+      res[j][pixels.size() - i - 1] = pixels[i][j];
+    }
+  }
+
+  return res;
+}
+
+Tile rotate(const Tile& tile) {
+  auto res = tile;
+  res.pixels = rotate(tile.pixels);
+  return res;
+}
+
+vector<vector<bool>> flip_y(const vector<vector<bool>>& pixels) {
+  auto res = pixels;
+
+  for (size_t i = 0; i < pixels.size(); i++) {
+    for (size_t j = 0; j < pixels[i].size(); j++) {
+      res[i][pixels.size() - j - 1] = pixels[i][j];
     }
   }
 
@@ -68,15 +85,8 @@ Tile rotate(const Tile& tile) {
 }
 
 Tile flip_y(const Tile& tile) {
-  auto& pixels = tile.pixels;
-  Tile res = tile;
-
-  for (size_t i = 0; i < pixels.size(); i++) {
-    for (size_t j = 0; j < pixels[i].size(); j++) {
-      res.pixels[i][pixels.size() - j - 1] = pixels[i][j];
-    }
-  }
-
+  auto res = tile;
+  res.pixels = flip_y(tile.pixels);
   return res;
 }
 
@@ -116,7 +126,7 @@ optional<vector<vector<Tile>>> tile_image(vector<Tile>& tiles,
       continue;
     }
 
-    if (n != 1) {
+    if (n != 1 || (n == 1 && m == d)) {
       // if not first row, the tile has to match with the one above
       if (m != d) {
         if (tiling[n - 2][m].pixels.back() != tile.pixels.front()) {
@@ -197,8 +207,108 @@ string part1() {
   return res;
 }
 
+vector<vector<bool>> drop_borders(Tile& tile) {
+  auto copy = tile.pixels;
+
+  copy.pop_back();
+  copy.erase(copy.begin());
+
+  for (size_t i = 0; i < copy.size(); i++) {
+    copy[i].pop_back();
+    copy[i].erase(copy[i].begin());
+  }
+
+  return copy;
+}
+
+void print_image(vector<vector<bool>> pixels) {
+  for (size_t i = 0; i < pixels.size(); i++) {
+    for (size_t j = 0; j < pixels[i].size(); j++) {
+      cout << (pixels[i][j] ? '#' : '.');
+    }
+    cout << endl;
+  }
+}
+
+size_t count_set(const vector<vector<bool>>& pixels) {
+  size_t count = 0;
+  for (const auto& row : pixels) {
+    for (const auto& cell : row) {
+      if (cell) {
+        count += 1;
+      }
+    }
+  }
+  return count;
+}
+
 int part2() {
-  auto data = get_input();
+  auto data = augment_actions(get_input());
+  auto tiling = tile_image(data);
+
+  vector<vector<bool>> monster = {
+      {false, false, false, false, false, false, false, false, false, false,
+       false, false, false, false, false, false, false, false, true,  false},
+      {true,  false, false, false, false, true,  true,  false, false, false,
+       false, true,  true,  false, false, false, false, true,  true,  true},
+      {false, true,  false, false, true,  false, false, true,  false, false,
+       true,  false, false, true,  false, false, true,  false, false, false},
+  };
+
+  // construct tiled image
+  vector<vector<bool>> image;
+  for (size_t i = 0; i < tiling.size(); i++) {
+    for (size_t j = 0; j < tiling[i].size(); j++) {
+      auto pixels = drop_borders(tiling[i][j]);
+      for (size_t k = 0; k < pixels.size(); k++) {
+        if (j == 0) {
+          image.emplace_back();
+        }
+        for (size_t l = 0; l < pixels[k].size(); l++) {
+          image[k + i * pixels.size()].push_back(pixels[k][l]);
+        }
+      }
+    }
+  }
+  auto images = {
+      image,
+      rotate(image),
+      rotate(rotate(image)),
+      rotate(rotate(rotate(image))),
+      flip_y(image),
+      rotate(flip_y(image)),
+      rotate(rotate(flip_y(image))),
+      rotate(rotate(rotate(flip_y(image)))),
+  };
+
+  // count number of monsters
+  for (auto img : images) {
+    int monster_count = 0;
+    for (size_t i = 0; i < img.size() - monster.size() + 1; i++) {
+      for (size_t j = 0; j < img[i].size() - monster[0].size() + 1; j++) {
+        bool found = true;
+        for (size_t k = 0; k < monster.size(); k++) {
+          for (size_t l = 0; l < monster[k].size(); l++) {
+            if (monster[k][l] && !img[i + k][j + l]) {
+              found = false;
+              break;
+            }
+          }
+          if (!found) {
+            break;
+          }
+        }
+        if (found) {
+          monster_count += 1;
+        }
+      }
+    }
+
+    if (monster_count > 0) {
+      // there is only one orientation where there are multiple monsters
+      return count_set(img) - monster_count * count_set(monster);
+    }
+  }
 
   return 0;
 }
